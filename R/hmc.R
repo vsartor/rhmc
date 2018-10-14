@@ -17,20 +17,16 @@
 #'
 #' @export
 num_grad = function(f, x) {
-    # Faz uma aproximação numérica do gradiente da função f no ponto x
     d = length(x)
     g = numeric(d)
 
     for (i in 1:d) {
-        # Calcula diferença parcial para o i-ésimo parâmetro da função
-
-        # Truques numéricos
+        # Numerical tricks
         h  = sqrt(.Machine$double.eps) * if (x[i] != 0) abs(x[i]) else 1e-8
         xh = x[i] + h
         dx = xh - x[i]
 
-        # Cálculo da diferença parcial
-        if (dx == 0) next # Evita divisão por 0 quando gradiente é 0
+        if (dx == 0) next
         Xh    = x
         Xh[i] = xh
         g[i]  = (f(Xh) - f(x)) / dx
@@ -96,16 +92,13 @@ hamiltonian_dynamics = function(U, q, p, L, eps, m) {
 hmc = function(f, init, numit, L, eps, mass) {
     d = length(init)
 
-    # Cadeias
     q = matrix(nrow = d, ncol = numit)
     U = numeric(numit)
 
-    # Inicializar valores
     q[ ,1] = init
     U[1]   = f(init)
     ar     = 0
 
-    # Monte Carlo Hamiltoniano
     for (i in 2:numit) {
         p = rnorm(d, 0, sqrt(mass))
         K = sum(p^2 / (2 * mass))
