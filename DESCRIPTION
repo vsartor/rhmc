@@ -2,8 +2,7 @@ Package: rhmc
 Type: Package
 Title: Hamiltonian Monte Carlo in R
 Version: 1.0.0
-Author: Victhor S. Sartório
-Maintainer: Victhor S. Sartório <victhor@dme.ufrj.br>
+Authors@R: person("Victhor", "Sartório", email = "victhor@dme.ufrj.br", role = c("aut", "cre", "cph"))
 Description: Implements simple Hamiltonian Monte Carlo routines in R for
              sampling from any desired target distribution which is continuous
              and smooth. Automatic parameter selection is not supported.
